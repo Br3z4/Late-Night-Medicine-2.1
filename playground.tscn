@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bwe00pouilrpi"]
+
+[ext_resource type="PackedScene" uid="uid://dimvy5oy688do" path="res://Player/player.tscn" id="1_rupst"]
+[ext_resource type="PackedScene" uid="uid://d0au5ni78uyyb" path="res://Tile Maps/mc_bedroom.tscn" id="2_wt17y"]
+[ext_resource type="Script" uid="uid://ndf7v1oqcdog" path="res://area_2d_door.gd" id="3_m8u5f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_is3ju"]
+radius = 25.0
+height = 134.0
+
+[node name="Area1" type="Node2D" unique_id=1054943019]
+
+[node name="Player" parent="." unique_id=1131853666 instance=ExtResource("1_rupst")]
+position = Vector2(394, 252)
+scale = Vector2(3.8052943, 4.3204846)
+
+[node name="McBedroom" parent="." unique_id=766711419 instance=ExtResource("2_wt17y")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=988247892]
+position = Vector2(-10, 0)
+script = ExtResource("3_m8u5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2078526019]
+position = Vector2(465, 201)
+shape = SubResource("CapsuleShape2D_is3ju")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
