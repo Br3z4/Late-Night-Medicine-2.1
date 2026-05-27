@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dlem2lphistim"]
+
+[ext_resource type="Texture2D" uid="uid://d1l638aphnmdx" path="res://assets/Street/street.png" id="1_n6vtj"]
+[ext_resource type="Texture2D" uid="uid://coa4bu6c3ocb3" path="res://assets/Street/background street light.png" id="2_pyvco"]
+[ext_resource type="Script" uid="uid://ce5qaxqoo58bh" path="res://area_2d outside.gd" id="3_i7vbf"]
+[ext_resource type="AudioStream" uid="uid://cyfxevbb5vp46" path="res://assets/universfield-gloomy-depths-246916.mp3" id="4_i7vbf"]
+[ext_resource type="PackedScene" uid="uid://dimvy5oy688do" path="res://Player/player.tscn" id="5_ku5i6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ku5i6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n6vtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pyvco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_n6vtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_n6vtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_n6vtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_n6vtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_n6vtj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nnj4j"]
+a = Vector2(-518.38666, 389.8667)
+b = Vector2(503.48444, 380.80005)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0b51g"]
+a = Vector2(-484.3243, 411.02222)
+b = Vector2(-486.45322, -495.64444)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_t0m8u"]
+a = Vector2(499.22662, 432.1778)
+b = Vector2(499.22662, -398.93332)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mvw1c"]
+radius = 15.0
+height = 78.0
+
+[node name="Node2D" type="Node2D" unique_id=1125231156]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=891811998]
+position = Vector2(239.5, 133)
+scale = Vector2(0.46972656, 0.33823526)
+sprite_frames = SubResource("SpriteFrames_ku5i6")
+autoplay = "default"
+frame_progress = 0.4641579
+
+[node name="StaticBody2D" type="StaticBody2D" parent="AnimatedSprite2D" unique_id=1178754811]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/StaticBody2D" unique_id=639224263]
+shape = SubResource("SegmentShape2D_nnj4j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite2D/StaticBody2D" unique_id=1608052828]
+shape = SubResource("SegmentShape2D_0b51g")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AnimatedSprite2D/StaticBody2D" unique_id=429572109]
+shape = SubResource("SegmentShape2D_t0m8u")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1143520331]
+script = ExtResource("3_i7vbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=111955334]
+position = Vector2(37, 218)
+shape = SubResource("CapsuleShape2D_mvw1c")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=158180794]
+stream = ExtResource("4_i7vbf")
+autoplay = true
+
+[node name="Player" parent="." unique_id=1131853666 instance=ExtResource("5_ku5i6")]
+position = Vector2(107, 239)
+scale = Vector2(4.3762226, 4.1276193)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
