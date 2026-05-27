@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dn0wtqroswd4f"]
+
+[ext_resource type="Script" path="res://player/ui/dialog_player.gd" id="1_k20v5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_okonb"]
+load_path = "res://.godot/imported/textbox.png-3e09c7d928d50934d3156a52250f7836.ctex"
+
+[node name="DialogPlayer" type="CanvasLayer" unique_id=785068459]
+process_mode = 1
+script = ExtResource("1_k20v5")
+
+[node name="Background" type="TextureRect" parent="." unique_id=65000984]
+offset_left = 92.0
+offset_top = 87.0
+offset_right = 384.0
+offset_bottom = 188.0
+texture = SubResource("CompressedTexture2D_okonb")
+
+[node name="TextLabal" type="Label" parent="." unique_id=1104794491]
+offset_left = 112.0
+offset_top = 101.0
+offset_right = 365.0
+offset_bottom = 176.0

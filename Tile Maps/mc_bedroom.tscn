@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://d0au5ni78uyyb"]
+
+[ext_resource type="Texture2D" uid="uid://2w5w2hpv5c8g" path="res://Tile Maps/Sprites/whole bedroom.png" id="1_wt2l8"]
+[ext_resource type="PackedScene" uid="uid://dimvy5oy688do" path="res://Player/player.tscn" id="2_21huv"]
+[ext_resource type="Script" uid="uid://ndf7v1oqcdog" path="res://area_2d_door.gd" id="3_enxbh"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wt2l8"]
+a = Vector2(423, 16)
+b = Vector2(-50, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_21huv"]
+a = Vector2(-9, 29)
+b = Vector2(14, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enxbh"]
+size = Vector2(79, 4)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_g6dut"]
+a = Vector2(162, 215)
+b = Vector2(126, 216)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4vxln"]
+a = Vector2(299, 199)
+b = Vector2(174, 199)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_enxbh"]
+a = Vector2(-0.21588135, -3.9343414)
+b = Vector2(33.78412, 21.065659)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_m5eix"]
+a = Vector2(426, 224)
+b = Vector2(288, 225)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ivphu"]
+a = Vector2(56, -83)
+b = Vector2(56, 54)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0askp"]
+a = Vector2(54, -95)
+b = Vector2(56, 33)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6dut"]
+radius = 25.0
+height = 134.0
+
+[node name="McBedroom" type="Node2D" unique_id=271127180]
+z_index = -1
+
+[node name="WholeBedroom" type="Sprite2D" parent="." unique_id=520833339]
+position = Vector2(240, 134.6875)
+scale = Vector2(0.46679688, 0.3291973)
+texture = ExtResource("1_wt2l8")
+
+[node name="Collisions" type="StaticBody2D" parent="." unique_id=1154564752]
+position = Vector2(-1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions" unique_id=420812439]
+position = Vector2(56, 254)
+shape = SubResource("SegmentShape2D_wt2l8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions" unique_id=1608443704]
+position = Vector2(142, 191)
+shape = SubResource("SegmentShape2D_21huv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions" unique_id=919657924]
+position = Vector2(94, 220)
+shape = SubResource("RectangleShape2D_enxbh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collisions" unique_id=980632285]
+position = Vector2(30, -12)
+shape = SubResource("SegmentShape2D_g6dut")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Collisions" unique_id=20576813]
+position = Vector2(8, 4)
+shape = SubResource("SegmentShape2D_4vxln")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Collisions" unique_id=1569760340]
+position = Vector2(305.21588, 205.93434)
+shape = SubResource("SegmentShape2D_enxbh")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Collisions" unique_id=642933076]
+position = Vector2(50, 2)
+shape = SubResource("SegmentShape2D_m5eix")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Collisions" unique_id=325678158]
+position = Vector2(-30, 215)
+shape = SubResource("SegmentShape2D_ivphu")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Collisions" unique_id=1484468675]
+position = Vector2(403, 235)
+shape = SubResource("SegmentShape2D_0askp")
+
+[node name="Player" parent="." unique_id=1131853666 instance=ExtResource("2_21huv")]
+position = Vector2(286, 217)
+scale = Vector2(4.3762226, 4.1276193)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1055700238]
+position = Vector2(-10, 0)
+script = ExtResource("3_enxbh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=187602325]
+position = Vector2(465, 201)
+shape = SubResource("CapsuleShape2D_g6dut")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
